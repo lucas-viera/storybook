@@ -72,7 +72,25 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 - Add icon to Login View and Google button to login.
 
 ### Google OAuth
-- We are going to need an API Key and Secret for this to work
+- We are going to need an API Key and Secret for this to work.
+- Visit [Google Cloud Console][7] and create a Project
+- Go to API and Services and Enable API and Services
+- Search for Google+ API and Enable it.
+- First, complete OAuth Consent screen.
+- Then click on Credentials and click con OAuth Client ID.
+- Add Client ID and Secret to `config/config/env`
+  
+### Passport
+- Visit [passportjs website][8] and go to View All Strategies. Look for [`passport-google-oauth20`][9]
+- Require `passport` and `session` from `app.js` and setup up each middleware
+- Create `config/passport.js` file.
+- Create user model in `modelx/User.js`
+- Configure `passport.js` properly. 
+- Investigate serialization for users.
+- Add routes and create `routes/auth.js`
+- Up to this point, the system will hang if we try to Log In because there is no action programmed other than `console.log(profile)` in `passport.js`
+- Now we complete this part of the code and try a new login.
+- We should now see the user registered in the Database Collection
 
 
 [1]:https://youtu.be/SBvmnHTQIPY
@@ -81,3 +99,6 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 [4]:https://mongoosejs.com/docs/migrating_to_6,html#no-more-deprecation-warning-options
 [5]:https://materializecss.com/
 [6]:https://cdnjs.com/
+[7]:https://console.cloud.google.com/
+[8]:https://www.passportjs.org/
+[9]:https://www.passportjs.org/packages/passport-google-oauth20/
