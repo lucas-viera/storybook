@@ -92,6 +92,21 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 - Now we complete this part of the code and try a new login.
 - We should now see the user registered in the Database Collection
 
+### Logout feature
+- Add a new route in `auth.js`
+
+### NavBar and burger menu button
+- Create a partial at `/views/partials/_header.hbd` and add the navbar code
+- Add `{{ > _header}}` inside `{{{body}}}` in `views/layouts/main.hbs`
+- Init the `M.Sidenav` and test.
+- System should now support loggout and fuctionality from the burger menu button.
+- We should block access directly without being logged in using a middleware.
+
+### Auth.js middleware
+- Create `middleware/auth.js` and add `ensureAuth` and `ensureGuest` to check if user is logged in or not.
+- At `route/index.js` require the middleware and add it as second argument to each route.
+
+### Store session 
 
 [1]:https://youtu.be/SBvmnHTQIPY
 [2]:https://github.com/bradtraversy/storybooks
