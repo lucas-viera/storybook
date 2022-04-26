@@ -17,7 +17,7 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 ### To run in dev mode
 - Run `npm run dev`
 
-### To run in dev mode
+### To run in prod mode
 - Run `npm starts`
 
 
