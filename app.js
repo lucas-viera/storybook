@@ -1,12 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const connectDB = require ('./config/db');
 const morgan = require ('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
-
+const MongoStore = require('connect-mongo');
+const connectDB = require ('./config/db');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -30,9 +31,10 @@ app.set('view engine', '.hbs');
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
-    //store:
-}));
+    saveUninitialized: false,
+    store: MongoStore.create({mongoUrl: process.env.MONGO_URI,}),
+    }
+));
 
 //Passport mw
 app.use(passport.initialize());
@@ -45,7 +47,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 
-const PORT = process.env.PORT || 5555
+const PORT = process.env.PORT || 5555;
 app.listen(
     PORT,
     console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}` )

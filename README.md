@@ -107,6 +107,35 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 - At `route/index.js` require the middleware and add it as second argument to each route.
 
 ### Store session 
+- Added a `store:` in `app.use(session({...}))`
+- Require `connect-mongo` and `mongoose` from `app.js`
+- Observe that this part of the video is not currently supported and needed to [adapt][10] to a newer version of `connect-mongo`
+- Once this was corrected, we can now refresh and loggin again. Check MongoDB to see the session for the user:
+```
+_id:"Yi6QT..."
+
+{"cookie":{"originalMaxAge":null,"expires":null,"httpOnly":true,"path":"/"},"passport":{"user":"626..."}}
+```
+
+### Dashboard
+- Added the first name of the user to the dashboard route in `index.js` so it can be used from the views.
+- Next, modify `dashboard.hbs` so it uses the new information.
+  
+## Stories
+- Create a new model for the stories: `models/Story.js`
+- It will contain a `title`, a `body` a `status` (public or private), the `user` (which is a special type `mongoose.Schema.types.ObjectId`) and `createdAt`.
+- At `index.js` add a `try-catch` logic to read user's stories.
+- Add error views `views/error/x00` and render them inside `catch`
+- At `dashboardh.hsb` add logic to check if there are stories.
+- Then, create a table to show them.
+- Create a partial for Add Story Button and insert it into `views/layouts/main.hbs` below header `{{> _add_button}}`
+- Look at the website and verify it now has the Add Button.
+- If clicked it will redirect to `/stories/add` but it's not implemented yet.
+
+### Add Story feature
+- 
+
+
 
 [1]:https://youtu.be/SBvmnHTQIPY
 [2]:https://github.com/bradtraversy/storybooks
@@ -117,3 +146,4 @@ It consists of a webapp which ask the user to login with Google. Then, the user 
 [7]:https://console.cloud.google.com/
 [8]:https://www.passportjs.org/
 [9]:https://www.passportjs.org/packages/passport-google-oauth20/
+[10]:https://stackoverflow.com/questions/66654037/mongo-connect-error-with-mongo-connectsession
