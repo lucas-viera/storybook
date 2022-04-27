@@ -121,7 +121,7 @@ _id:"Yi6QT..."
 - Added the first name of the user to the dashboard route in `index.js` so it can be used from the views.
 - Next, modify `dashboard.hbs` so it uses the new information.
   
-## Stories
+### Stories
 - Create a new model for the stories: `models/Story.js`
 - It will contain a `title`, a `body` a `status` (public or private), the `user` (which is a special type `mongoose.Schema.types.ObjectId`) and `createdAt`.
 - At `index.js` add a `try-catch` logic to read user's stories.
