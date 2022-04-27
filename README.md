@@ -133,8 +133,31 @@ _id:"Yi6QT..."
 - If clicked it will redirect to `/stories/add` but it's not implemented yet.
 
 ### Add Story feature
-- 
+- As there are several views for stories needed, create a `views/stories/` directory
+- Create `views/stories/add.hbs`
+- Create the route `route/stories.js` 
+- Use the route from `app.js`
+- At this point, the Add Story Button should redirect fine with minor visual details.
+- To fix this, in `views/layouts/main.hbs` add `M.FormSelect.init(document.querySelector('#status'))`
 
+### CKEditor 
+- We'll integrate [CKEdito][11] to the story text area so the user has a more friendly interface.
+- Copy and Paste the script tag to `views/layouts/main.hbs` and initializite. Observe we did not selected plugins
+- Add POST route in `stories.js` and use `req.body`. To use `req.body` we'll need to use body in `app.js`
+- Once configured in `app.js`, next thing is to create the user from the body and redirect to `/dashboard'
+- At this point, system will take the new story, save it to database and redirect correctly. Also, if the user logs out and logs in with another user, it should not see private stories.
+
+### Date formatting
+- Create `helpers/hbs.js` as handlebar helper
+- We are going to use `moment` for this
+- In `app.js` we required all `helpers/hbd` and added them to `app.engine`.
+- Then, in `views/dashboard.hbs` we replace `createdAt` for `fomatDate createdAt 'MMM Do YYYY, h:mm:ss a'`
+- At this point, system should register stories with formatted dates.
+
+
+### Public Stories
+- Create `views/stories/index.hbs` and setup a `for-each` so each story has an image, the content and a link to user profile and Read More button.
+- In `routes/stories.js` 
 
 
 [1]:https://youtu.be/SBvmnHTQIPY
@@ -147,3 +170,4 @@ _id:"Yi6QT..."
 [8]:https://www.passportjs.org/
 [9]:https://www.passportjs.org/packages/passport-google-oauth20/
 [10]:https://stackoverflow.com/questions/66654037/mongo-connect-error-with-mongo-connectsession
+[11]:https://cdnjs.com/libraries/ckeditor
